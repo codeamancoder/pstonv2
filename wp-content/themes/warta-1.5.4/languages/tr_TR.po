@@ -2120,7 +2120,7 @@ msgstr ""
 
 #: inc/template-tags/article-footer.php:46
 msgid "Read More"
-msgstr ""
+msgstr "Devamı"
 
 #: inc/template-tags/comment.php:21
 msgid "Pingback:"
