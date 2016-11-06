@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Warta - News/Magazine WordPress Theme\n"
 "POT-Creation-Date: 2014-04-21 13:55+0700\n"
-"PO-Revision-Date: 2016-11-06 05:05+0300\n"
+"PO-Revision-Date: 2016-11-06 19:03+0300\n"
 "Last-Translator: Friska Max <friskamax@gmail.com>\n"
 "Language-Team: Friska Max <friskamax@gmail.com>\n"
 "Language: en_US\n"
@@ -26,7 +26,7 @@ msgstr "Kategori"
 
 #: archive.php:37
 msgid "Tag: "
-msgstr ""
+msgstr "Etiket"
 
 #: archive.php:40
 msgid "Author: "
@@ -98,12 +98,12 @@ msgstr ""
 #: inc/admin/singular.php:37 inc/admin/singular.php:62
 #: inc/admin/singular.php:157
 msgid "Comments"
-msgstr ""
+msgstr "Yorumlar"
 
 #: comments.php:58 comments.php:82
 msgctxt "Comment pages"
 msgid "Pages: "
-msgstr ""
+msgstr "Sayfalar"
 
 #: comments.php:92
 msgid "Comments are closed."
@@ -111,24 +111,24 @@ msgstr ""
 
 #: comments.php:100
 msgid "Your full name"
-msgstr ""
+msgstr "Adınız"
 
 #: comments.php:105
 msgid "Your email address"
-msgstr ""
+msgstr "Email adresiniz"
 
 #: comments.php:110 template-contact-page-full-width.php:70
 #: template-contact-page.php:74
 msgid "Your website"
-msgstr ""
+msgstr "Website"
 
 #: comments.php:114
 msgid "Your comment *"
-msgstr ""
+msgstr "Yorumunuz *"
 
 #: content-none.php:11
 msgid "Nothing Found"
-msgstr ""
+msgstr "İçerik bulunamadı"
 
 #: content-none.php:15
 #, php-format
@@ -152,7 +152,7 @@ msgstr ""
 #: content-single-gallery.php:70 content-single-video.php:72
 #: content-single.php:58
 msgid "Pages:"
-msgstr ""
+msgstr "Sayfalar:"
 
 #: deprecated/init.php:28
 msgid ""
@@ -396,7 +396,7 @@ msgstr "Ara"
 #: header.php:84 header.php:91 searchform.php:9
 msgctxt "label"
 msgid "Search for:"
-msgstr ""
+msgstr "Arama sonuçları:"
 
 #: header.php:88 header.php:95
 msgctxt "placeholder"
@@ -489,7 +489,7 @@ msgstr ""
 #: inc/admin/singular.php:156 inc/widgets/articles.php:265
 #: inc/widgets/slider-tabs.php:269 inc/widgets/tabs.php:265
 msgid "Author"
-msgstr ""
+msgstr "Yazar"
 
 #: inc/admin/archive.php:68 inc/admin/singular.php:38
 #: inc/admin/singular.php:158
@@ -1477,11 +1477,11 @@ msgstr ""
 
 #: inc/admin/singular.php:145
 msgid "Related Posts"
-msgstr ""
+msgstr "Diğer Yazılar"
 
 #: inc/admin/singular.php:151
 msgid "Related Posts - Post Meta"
-msgstr ""
+msgstr "Diğer Yazılar"
 
 #: inc/admin/singular.php:155 inc/widgets/slider-tabs.php:264
 msgid "Category"
@@ -2150,8 +2150,8 @@ msgstr ""
 #, php-format
 msgid "%d comment"
 msgid_plural "%d comments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d yorum"
+msgstr[1] "%d yorum"
 
 #: inc/template-tags/post-nav.php:24
 msgid "Post navigation"
@@ -2159,13 +2159,13 @@ msgstr ""
 
 #: inc/template-tags/post-nav.php:27
 msgctxt "Previous post link"
-msgid "<span class=\"meta-nav\">Önceki:</span> <h5>%title</h5>"
-msgstr ""
+msgid "<span class=\"meta-nav\">Previous post:</span> <h5>%title</h5>"
+msgstr "<span class=\"meta-nav\">Önceki:</span> <h5>%title</h5>"
 
 #: inc/template-tags/post-nav.php:28
 msgctxt "Next post link"
-msgid "<span class=\"meta-nav\">Sonraki:</span> <h5>%title</h5>"
-msgstr ""
+msgid "<span class=\"meta-nav\">Next post:</span> <h5>%title</h5>"
+msgstr "<span class=\"meta-nav\">Sonraki:</span> <h5>%title</h5>"
 
 #: inc/template-tags/posted-on.php:51 inc/template-tags/posted-on.php:92
 #: single.php:27
@@ -3038,12 +3038,12 @@ msgstr ""
 
 #: search.php:15
 msgid "Search Results for:"
-msgstr ""
+msgstr "Arama sonuçları:"
 
 #: searchform.php:11
 msgctxt "placeholder"
 msgid "Enter keywords"
-msgstr ""
+msgstr "Aranacak kelime"
 
 #: single.php:20
 msgctxt "Used between category list items."
@@ -3066,19 +3066,19 @@ msgstr ""
 
 #: template-contact-page-full-width.php:62 template-contact-page.php:66
 msgid "Your full name *"
-msgstr ""
+msgstr "Adınız *"
 
 #: template-contact-page-full-width.php:66 template-contact-page.php:70
 msgid "Your email address *"
-msgstr ""
+msgstr "Email *"
 
 #: template-contact-page-full-width.php:73 template-contact-page.php:77
 msgid "Your message *"
-msgstr ""
+msgstr "Mesajınız *"
 
 #: template-contact-page-full-width.php:75 template-contact-page.php:79
 msgid "Send Message"
-msgstr ""
+msgstr "Gönder"
 
 #: template-contact-page-header.php:38
 #, php-format
