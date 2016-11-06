@@ -35,11 +35,11 @@ class Warta_Feedburner extends WP_Widget {
                 <section class="<?php warta_widget_class( $args['id'], 6, TRUE, isset($args['is_pb']) ) ?> feedburner">
 <?php                   if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
-                        <form action="http://feedburner.google.com/fb/a/mailverify" 
+                        <form action="https://feedburner.google.com/fb/a/mailverify" 
                                 method="post" 
                                 target="popupwindow" 
                                 onsubmit="window.open(
-                                        'http://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_attr( $feedburner_id ) ?>', 
+                                        'https://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_attr( $feedburner_id ) ?>', 
                                         'popupwindow', 
                                         'scrollbars=yes,width=550,height=520'
                         );return true">
