@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Warta - News/Magazine WordPress Theme\n"
 "POT-Creation-Date: 2014-04-21 13:55+0700\n"
-"PO-Revision-Date: 2016-11-06 03:33+0300\n"
+"PO-Revision-Date: 2016-11-06 05:05+0300\n"
 "Last-Translator: Friska Max <friskamax@gmail.com>\n"
 "Language-Team: Friska Max <friskamax@gmail.com>\n"
 "Language: en_US\n"
@@ -249,7 +249,7 @@ msgstr ""
 #: deprecated/options/carousel.php:72 inc/admin/archive.php:65
 #: inc/admin/singular.php:39
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #: deprecated/options/carousel.php:78
 msgid "Only last 100 posts that are displayed."
@@ -391,7 +391,7 @@ msgstr ""
 #: header.php:82 header.php:99 searchform.php:13
 msgctxt "submit button"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: header.php:84 header.php:91 searchform.php:9
 msgctxt "label"
@@ -401,7 +401,7 @@ msgstr ""
 #: header.php:88 header.php:95
 msgctxt "placeholder"
 msgid "Search&hellip;"
-msgstr ""
+msgstr "Arama&hellip;"
 
 #: inc/admin/advanced.php:10
 msgid "Advanced Settings"
@@ -1441,7 +1441,7 @@ msgstr ""
 #: inc/widgets/posts-carousel.php:149 inc/widgets/slider-tabs.php:134
 #: inc/widgets/tabs.php:167
 msgid "Tags:"
-msgstr ""
+msgstr "Etiketler"
 
 #: inc/admin/singular.php:75
 msgid "Display Share Buttons"
@@ -1453,7 +1453,7 @@ msgstr ""
 
 #: inc/admin/singular.php:84
 msgid "Share:"
-msgstr ""
+msgstr "Paylaş:"
 
 #: inc/admin/singular.php:90
 msgid "Share Buttons"
@@ -2134,7 +2134,7 @@ msgstr ""
 
 #: inc/template-tags/comment.php:67
 msgid "Reply"
-msgstr ""
+msgstr "Cevapla"
 
 #: inc/template-tags/comment.php:77
 msgid "Your comment is awaiting moderation."
@@ -2159,12 +2159,12 @@ msgstr ""
 
 #: inc/template-tags/post-nav.php:27
 msgctxt "Previous post link"
-msgid "<span class=\"meta-nav\">Previous Post:</span> <h5>%title</h5>"
+msgid "<span class=\"meta-nav\">Önceki:</span> <h5>%title</h5>"
 msgstr ""
 
 #: inc/template-tags/post-nav.php:28
 msgctxt "Next post link"
-msgid "<span class=\"meta-nav\">Next Post:</span> <h5>%title</h5>"
+msgid "<span class=\"meta-nav\">Sonraki:</span> <h5>%title</h5>"
 msgstr ""
 
 #: inc/template-tags/posted-on.php:51 inc/template-tags/posted-on.php:92
