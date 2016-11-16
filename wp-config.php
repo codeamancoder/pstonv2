@@ -16,6 +16,9 @@
 
 // ** MySQL ayarları - Bu bilgileri sunucunuzdan alabilirsiniz ** //
 /** WordPress için kullanılacak veritabanının adı */
+
+define('DISALLOW_FILE_EDIT', true);
+
 define('DB_NAME', 'srkn_pstnv2');
 
 /** MySQL veritabanı kullanıcısı */
@@ -58,7 +61,7 @@ define('NONCE_SALT',       'T|Mz6QNfUP^?A&8zgeSNd@[1N88Z+vTY)>& 2Avxj(-@x: I~J]I
  * Tüm kurulumlara ayrı bir önek vererek bir veritabanına birden fazla kurulum yapabilirsiniz.
  * Sadece rakamlar, harfler ve alt çizgi lütfen.
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'jhfnb_';
 
 /**
  * Geliştiriciler için: WordPress hata ayıklama modu.
