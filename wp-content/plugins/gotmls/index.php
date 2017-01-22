@@ -8,7 +8,7 @@ Author URI: http://wordpress.ieonly.com/category/my-plugins/anti-malware/
 Contributors: scheeeli, gotmls
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZHD8QHZ2E7PE
 Description: This Anti-Virus/Anti-Malware plugin searches for Malware and other Virus like threats and vulnerabilities on your server and helps you remove them. It's always growing and changing to adapt to new threats so let me know if it's not working for you.
-Version: 4.16.48
+Version: 4.16.49
 */
 if (isset($_SERVER["DOCUMENT_ROOT"]) && ($SCRIPT_FILE = str_replace($_SERVER["DOCUMENT_ROOT"], "", isset($_SERVER["SCRIPT_FILENAME"])?$_SERVER["SCRIPT_FILENAME"]:isset($_SERVER["SCRIPT_NAME"])?$_SERVER["SCRIPT_NAME"]:"")) && strlen($SCRIPT_FILE) > strlen("/".basename(__FILE__)) && substr(__FILE__, -1 * strlen($SCRIPT_FILE)) == substr($SCRIPT_FILE, -1 * strlen(__FILE__)))
 	include(dirname(__FILE__)."/safe-load/index.php");
@@ -743,19 +743,29 @@ function GOTMLS_Firewall_Options() {
 		)
 	);
 	$find = '|<Files[^>]+xmlrpc.php>(.+?)</Files>\s*(# END GOTMLS Patch to Block XMLRPC Access\s*)*|is';
-	$deny = "\norder deny,allow\ndeny from all";
-	$allow = "\nallow from";
-	if (count($GLOBALS["GOTMLS"]["tmp"]["apache"]) > 1) {
+	$deny = "\n<IfModule !mod_authz_core.c>\norder deny,allow\ndeny from all";
+	$allow = "";
+	if (isset($_SERVER["REMOTE_ADDR"])) {
+		$deny .= "\nallow from ".$_SERVER["REMOTE_ADDR"];
+		$allow .= " ".$_SERVER["REMOTE_ADDR"];
+	}
+	if (isset($_SERVER["SERVER_ADDR"])) {
+		$deny .= "\nallow from ".$_SERVER["SERVER_ADDR"];
+		$allow .= " ".$_SERVER["SERVER_ADDR"];
+	}
+	$deny .= "\n</IfModule>\n<IfModule mod_authz_core.c>\nRequire";
+	if (strlen(trim($allow)) > 0)
+		$deny .= " ip$allow";
+	else
+		$deny .= " all denied";
+	$deny .= "\n</IfModule>";
+	if (count($GLOBALS["GOTMLS"]["tmp"]["apache"]) > 1)
 		$errdiv = "<!-- ".$GLOBALS["GOTMLS"]["tmp"]["apache"][0]." -->";
-		if (!version_compare($GLOBALS["GOTMLS"]["tmp"]["apache"][1], "2.4", "<")) {
-			$deny = "\nRequire";
-			$allow = "";
-		}
-	} else
+	else
 		$errdiv = "<div class='error'>Unable to read Apache Version, this patch may not work!</div>";
 	$patch_action = $lt.'form method="POST" name="GOTMLS_Form_XMLRPC_patch"'.$gt.$lt.'input type="hidden" name="'.str_replace('=', '" value="', GOTMLS_set_nonce(__FUNCTION__."1159")).'"'.$gt.$lt.'script'.$gt."\nfunction setFirewall(opt, val) {\n\tif (autoUpdateDownloadGIF = document.getElementById('fw_opt'))\n\t\tautoUpdateDownloadGIF.value = opt;\n\tif (autoUpdateDownloadGIF = document.getElementById('fw_val'))\n\t\tautoUpdateDownloadGIF.value = val;\n}\nfunction testComplete() {\nif (autoUpdateDownloadGIF = document.getElementById('autoUpdateDownload'))\n\tdonationAmount = autoUpdateDownloadGIF.src.replace(/^.+\?/,'');\nif ((autoUpdateDownloadGIF.src == donationAmount) || donationAmount=='0') {\n\tif (patch_searching_div = document.getElementById('GOTMLS_XMLRPC_patch_searching')) {\n\t\tif (autoUpdateDownloadGIF.src == donationAmount)\n\t\t\tpatch_searching_div.innerHTML = '<span style=\"color: #F00;\">".__("You must register and donate to use this feature!",'gotmls')."</span>';\n\t\telse\n\t\t\tpatch_searching_div.innerHTML = '<span style=\"color: #F00;\">".__("This feature is available to those who have donated!",'gotmls')."</span>';\n\t}\n} else {\n\tshowhide('GOTMLS_XMLRPC_patch_searching');\n\tshowhide('GOTMLS_XMLRPC_patch_button', true);\n}\n}\nwindow.onload=testComplete;\n$lt/script$gt$lt".'div style="padding: 0 30px;"'.$gt.$lt.'input type="hidden" name="GOTMLS_XMLRPC_patching" value="';
 	$patch_found = false;
-	$head = str_replace(array('|<Files[^>]+', '(.+?)', '\\s*(', '\\s*)*|is'), array("<Files ", $deny.(isset($_SERVER["REMOTE_ADDR"])?"$allow ".$_SERVER["REMOTE_ADDR"]:($allow?"":" all denied"))."\n", "\n", "\n"), $find);
+	$head = str_replace(array('|<Files[^>]+', '(.+?)', '\\s*(', '\\s*)*|is'), array("<Files ", "$deny\n", "\n", "\n"), $find);
 	$htaccess = "";
 	if (is_file(ABSPATH.'.htaccess'))
 		if (($htaccess = @file_get_contents(ABSPATH.'.htaccess')) && strlen($htaccess))

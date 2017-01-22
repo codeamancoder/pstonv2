@@ -17,7 +17,7 @@
 // ** MySQL ayarları - Bu bilgileri sunucunuzdan alabilirsiniz ** //
 /** WordPress için kullanılacak veritabanının adı */
 
-define('DISALLOW_FILE_EDIT', true);
+define('DISALLOW_FILE_EDIT', false);
 
 define('DB_NAME', 'srkn_pstnv2');
 
@@ -36,9 +36,7 @@ define('DB_CHARSET', 'utf8mb4');
 /** Veritabanı karşılaştırma tipi. Herhangi bir şüpheniz varsa bu değeri değiştirmeyin. */
 define('DB_COLLATE', '');
 
-/**#@+
- * Eşsiz doğrulama anahtarları.
- *
+ /**
  * Her anahtar farklı bir karakter kümesi olmalı!
  * {@link http://api.wordpress.org/secret-key/1.1/salt WordPress.org secret-key service} servisini kullanarak yaratabilirsiniz.
  * Çerezleri geçersiz kılmak için istediğiniz zaman bu değerleri değiştirebilirsiniz. Bu tüm kullanıcıların tekrar giriş yapmasını gerektirecektir.
