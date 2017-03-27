@@ -1,8 +1,11 @@
 <?php
+/*70c38*/
+
+/*70c38*/
 /**
- * WordPress için taban ayar dosyası.
+ * WordPress için tabanı ayar dosyası.
  *
- * Bu dosya şu ayarları içerir: MySQL ayarları, tablo öneki,
+ * Bu dosya şu ayarları içerir: MySQL ayarları, öneki,
  * gizli anahtaralr ve ABSPATH. Daha fazla bilgi için 
  * {@link https://codex.wordpress.org/Editing_wp-config.php wp-config.php düzenleme}
  * yardım sayfasına göz atabilirsiniz. MySQL ayarlarınızı servis sağlayıcınızdan edinebilirsiniz.
@@ -17,7 +20,7 @@
 // ** MySQL ayarları - Bu bilgileri sunucunuzdan alabilirsiniz ** //
 /** WordPress için kullanılacak veritabanının adı */
 
-define('DISALLOW_FILE_EDIT', false);
+define('DISALLOW_FILE_EDIT', true);
 
 define('DB_NAME', 'srkn_pstnv2');
 
@@ -37,8 +40,7 @@ define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
 
  /**
- * Her anahtar farklı bir karakter kümesi olmalı!
- * {@link http://api.wordpress.org/secret-key/1.1/salt WordPress.org secret-key service} servisini kullanarak yaratabilirsiniz.
+ * Her anahtar far*//*://api.wordpress.org/secret-key/1.1/salt WordPress.org secret-key service} servisini kullanarak yaratabilirsiniz.
  * Çerezleri geçersiz kılmak için istediğiniz zaman bu değerleri değiştirebilirsiniz. Bu tüm kullanıcıların tekrar giriş yapmasını gerektirecektir.
  *
  * @since 2.6.0
@@ -54,17 +56,13 @@ define('NONCE_SALT',       'T|Mz6QNfUP^?A&8zgeSNd@[1N88Z+vTY)>& 2Avxj(-@x: I~J]I
 /**#@-*/
 
 /**
- * WordPress veritabanı tablo ön eki.
- *
- * Tüm kurulumlara ayrı bir önek vererek bir veritabanına birden fazla kurulum yapabilirsiniz.
+ * WordPress veritabanı t*//*erek bir veritabanına birden fazla kurulum yapabilirsiniz.
  * Sadece rakamlar, harfler ve alt çizgi lütfen.
  */
 $table_prefix  = 'jhfnb_';
 
 /**
- * Geliştiriciler için: WordPress hata ayıklama modu.
- *
- * Bu değeri "true" yaparak geliştirme sırasında hataların ekrana basılmasını sağlayabilirsiniz.
+ * Geliştiriciler için: Word*//*geliştirme sırasında hataların ekrana basılmasını sağlayabilirsiniz.
  * Tema ve eklenti geliştiricilerinin geliştirme aşamasında WP_DEBUG
  * kullanmalarını önemle tavsiye ederiz.
  */

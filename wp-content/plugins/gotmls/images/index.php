@@ -110,7 +110,7 @@ if (isset($_GET["SESSION"]) && is_numeric($_GET["SESSION"]) && preg_match('|(.*?
 	header("Content-type: image/gif");
 	$img_src = GOTMLS_local_images_path.'GOTMLS-16x16.gif';
 	if (!(file_exists($img_src) && $img_bin = @file_get_contents($img_src)))
-		$img_bin = GOTMLS_decode('R0lGODlhEAAQAIABAAAAAP///yH5BAEAAAEALAAAAAAQABAAAAIshB0Qm+eo2HuJNWdrjlFm3S2hKB7kViKaxZmr98YgSo/jzH6tiU0974MADwUAOw==');
+		$img_bin = GOTMLS_decode('R=lGODlhEAAQAIABAAAAAP___yH5BAEAAAEALAAAAAAQABAAAAIshB=Qm-eo2HuJNWdrjlFm3S2hKB7kViKaxZmr98YgSo_jzH6tiU=974MADwUAOw2');
 	die($img_bin);
 } elseif (isset($_GET["no_error_reporting"]))
 	@error_reporting(0);
@@ -125,9 +125,20 @@ GOTMLS_define("GOTMLS_Loading_LANGUAGE", __("Loading, Please Wait ...",'gotmls')
 GOTMLS_define("GOTMLS_Automatically_Fix_LANGUAGE", __("Automatically Fix SELECTED Files Now",'gotmls'));
 
 if (function_exists("get_option")) {
+function GOTMLS_update_option($index, $value = array()) {
+	return update_option('GOTMLS_'.$index.'_blob', GOTMLS_encode(serialize($value)));
+}
+function GOTMLS_get_option($index, $value = array()) {
+	if (count($tmp = get_option('GOTMLS_'.$index.'_array', array()))) {
+		GOTMLS_update_option($index, $tmp);
+		delete_option('GOTMLS_'.$index.'_array');
+	} else
+		$tmp = $value;
+	return unserialize(GOTMLS_decode(get_option('GOTMLS_'.$index.'_blob', GOTMLS_encode(serialize($tmp)))));
+}
 	$GLOBALS["GOTMLS"]["tmp"]["nonce"] = get_option('GOTMLS_nonce_array', array());
 	$GLOBALS["GOTMLS"]["tmp"]["settings_array"] = get_option('GOTMLS_settings_array', array());
-	$GLOBALS["GOTMLS"]["tmp"]["definitions_array"] = get_option('GOTMLS_definitions_array', $GLOBALS["GOTMLS"]["tmp"]["definitions_array"]);
+	$GLOBALS["GOTMLS"]["tmp"]["definitions_array"] = GOTMLS_get_option('definitions', $GLOBALS["GOTMLS"]["tmp"]["definitions_array"]);
 	GOTMLS_define("GOTMLS_siteurl", get_option("siteurl"));
 	$GLOBALS["GOTMLS"]["log"] = get_option('GOTMLS_scan_log/'.(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"0.0.0.0").'/'.$GLOBALS["GOTMLS"]["tmp"]["mt"], array());
 	if (!(isset($GLOBALS["GOTMLS"]["log"]["settings"]) && is_array($GLOBALS["GOTMLS"]["log"]["settings"])))
@@ -302,36 +313,30 @@ if (!function_exists("add_action")) {
 }
 
 function GOTMLS_fileperms($file) {
-	if ($perms = @fileperms($file)) {
-		if (($perms & 0xC000) == 0xC000) {
-			$info = 's';    // Socket
-		} elseif (($perms & 0xA000) == 0xA000) {
-			$info = 'l';    // Symbolic Link
-		} elseif (($perms & 0x8000) == 0x8000) {
-			$info = '-';    // Regular
-		} elseif (($perms & 0x6000) == 0x6000) {
-			$info = 'b';    // Block special
-		} elseif (($perms & 0x4000) == 0x4000) {
-			$info = 'd';    // Directory
-		} elseif (($perms & 0x2000) == 0x2000) {
-			$info = 'c';    // Character special
-		} elseif (($perms & 0x1000) == 0x1000) {
-			$info = 'p';    // FIFO pipe
-		} else
-			$info = 'u';    // Unknown
-		// Owner
-		$info .= (($perms & 0x0100) ? 'r' : '-');
-		$info .= (($perms & 0x0080) ? 'w' : '-');
-		$info .= (($perms & 0x0040) ? (($perms & 0x0800) ? 's' : 'x' ) : (($perms & 0x0800) ? 'S' : '-'));
-		// Group
-		$info .= (($perms & 0x0020) ? 'r' : '-');
-		$info .= (($perms & 0x0010) ? 'w' : '-');
-		$info .= (($perms & 0x0008) ? (($perms & 0x0400) ? 's' : 'x' ) : (($perms & 0x0400) ? 'S' : '-'));
-		// World
-		$info .= (($perms & 0x0004) ? 'r' : '-');
-		$info .= (($perms & 0x0002) ? 'w' : '-');
-		$info .= (($perms & 0x0001) ? (($perms & 0x0200) ? 't' : 'x' ) : (($perms & 0x0200) ? 'T' : '-'));
-		return $info;
+	if ($prm = @fileperms($file)) {
+		if (($prm & 0xC000) == 0xC000)
+			$ret = "s";
+		elseif (($prm & 0xA000) == 0xA000)
+			$ret = "l";
+		elseif (($prm & 0x8000) == 0x8000)
+			$ret = "-";
+		elseif (($prm & 0x6000) == 0x6000)
+			$ret = "b";
+		elseif (($prm & 0x4000) == 0x4000)
+			$ret = "d";
+		elseif (($prm & 0x2000) == 0x2000)
+			$ret = "c";
+		elseif (($prm & 0x1000) == 0x1000)
+			$ret = "p";
+		else
+			$ret = "u";
+		$ret .= (($prm & 0x0100)?"r":"-").(($prm & 0x0080)?"w":"-");
+		$ret .= (($prm & 0x0040)?(($prm & 0x0800)?"s":"x" ):(($prm & 0x0800)?"S":"-"));
+		$ret .= (($prm & 0x0020)?"r":"-").(($prm & 0x0010)?"w":"-");
+		$ret .= (($prm & 0x0008)?(($prm & 0x0400)?"s":"x" ):(($prm & 0x0400)?"S":"-"));
+		$ret .= (($prm & 0x0004)?"r":"-").(($prm & 0x0002)?"w":"-");
+		$ret .= (($prm & 0x0001)?(($prm & 0x0200)?"t":"x" ):(($prm & 0x0200)?"T":"-"));
+		return $ret;
 	} else
 		return "stat failed!";
 }
