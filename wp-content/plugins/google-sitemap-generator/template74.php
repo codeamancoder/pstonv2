@@ -1,2 +1,0 @@
-<?php
- $uqrprrrqzm = 911; ?>
