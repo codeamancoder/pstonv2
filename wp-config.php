@@ -22,10 +22,10 @@
 
 define('DISALLOW_FILE_EDIT', true);
 
-define('DB_NAME', 'srkn_pstnv2');
+define('DB_NAME', 'piston_pistonk');
 
 /** MySQL veritabanı kullanıcısı */
-define('DB_USER', 'srkn_pstonus');
+define('DB_USER', 'piston_pistonk');
 
 /** MySQL veritabanı parolası */
 define('DB_PASSWORD', 'P8EYjcby');
